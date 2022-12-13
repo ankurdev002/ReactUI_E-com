@@ -1,8 +1,9 @@
 import { Badge } from '@material-ui/core';
 import { Search, ShoppingCartOutlined } from '@material-ui/icons';
-import React from 'react'
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components'
 import {mobile} from "../responsive";
+
 
 const Container = styled.div`
 height:60px;
@@ -12,7 +13,7 @@ ${mobile({height: "50px"})}
 const Wrapper = styled.div`
 padding: 10px 20px;
 display: flex;
-align-item:center;
+align-items:center;
 justify-content: space-between;
 ${mobile({padding: "10px 0px"})}
 `;
@@ -48,6 +49,7 @@ text-align:center;
 
 const Logo = styled.h1`
 font-weight:bold;
+cursor:pointer;
 ${mobile({fontSize: "24px"})}
 `;
 
@@ -59,15 +61,48 @@ justify-content:flex-end;
 ${mobile({flex:2,justifyContent: "center"})}
 `;
 
+
+
 const MenuItem = styled.div`
 font-size:14px;
 cursor:pointer;
 margin-left:25px;
 ${mobile({fontSize: "12px"  ,marginLeft:"10px"})}
+
+
+
+&:hover{
+    transform:scale(1.06);
+    transition: all 0.5s ease;
+    color:teal;
+}
 `
 
+
+
 function Navbar() {
+    const history = useHistory();
+    function handleClickreg(){
+        history.push("/register");
+    };
+
+    function handleClicklogin(){
+        history.push("/login");
+    };
+
+    function handleClickhome(){
+        history.push("/");
+    };
+
+    function handleClickcart(){
+        history.push("/cart");
+    };
+
+
+
+
     return (
+        
         <Container>
             <Wrapper>
                 <Left>
@@ -77,13 +112,17 @@ function Navbar() {
                         <Search style ={{color:"gray" , fontSize:16 }} />
                     </SearchContainer>
                 </Left>
-                <Center><Logo >ANKUR.</Logo></Center>
-                <Right>
 
-                    <MenuItem>REGISTER</MenuItem>
-                    <MenuItem>SIGN IN</MenuItem>
+                    <Center><Logo onClick={handleClickhome}>ANKUR SHOP</Logo></Center>
+
+                <Right>
+                        <MenuItem onClick={handleClickreg}>REGISTER
+                        </MenuItem>
+
+                    <MenuItem onClick={handleClicklogin}>SIGN IN</MenuItem>
                     <MenuItem>
-                    <Badge badgeContent={1} color="primary">
+                    
+                    <Badge onClick={handleClickcart} badgeContent={1} color="primary">
                     <ShoppingCartOutlined />
                     </Badge>
                     </MenuItem>
@@ -93,4 +132,4 @@ function Navbar() {
     );
 }
 
-export default Navbar
+export default Navbar;

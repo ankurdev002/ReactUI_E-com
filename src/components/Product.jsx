@@ -23,7 +23,7 @@ margin:5px;
 min-width:280px;
 height:250px;
 display:flex;
-align-item:center;
+align-items:center;
 justify-content:center;
 background-color:#f5fbfc;
 position:relative;

@@ -1,5 +1,6 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons"
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components"
 import { sliderItems } from "../data";
 import { mobile } from "../responsive";
@@ -44,7 +45,7 @@ const Slide=styled.div`
 width:100vw;
 height:100vh;
 display:flex;
-align-item:center;
+align-items:center;
 background-color: #${props=>props.bg};
 `;
 
@@ -91,6 +92,10 @@ export const Slider = () => {
         }
 
     };
+    const history = useHistory();
+    function handleClickproducts(){
+        history.push("/products");
+    };
 
   return (
     <Container>
@@ -106,7 +111,7 @@ export const Slider = () => {
                 <InfoContainer>
                     <Title>{item.title}</Title>
                     <Desc>{item.desc}</Desc>
-                    <Button>SHOP NOW</Button>
+                    <Button onClick={handleClickproducts}>SHOP NOW</Button>
                 </InfoContainer>
                 </Slide>
                 ))}
